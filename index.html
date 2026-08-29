@@ -73,7 +73,25 @@
     <div class="history" id="history"></div>
   </div>
 
+  <div class="card" style="font-size:13px; line-height:1.9; color:var(--sub);">
+    <h2 id="aboutTitle" style="font-size:15px; color:var(--text); margin:0 0 8px;"></h2>
+    <p id="aboutBody1" style="margin:0 0 10px;"></p>
+    <p id="aboutBody2" style="margin:0;"></p>
+  </div>
+
+  <div class="card" style="font-size:13px; line-height:1.9; color:var(--sub);">
+    <h2 id="faqTitle" style="font-size:15px; color:var(--text); margin:0 0 10px;"></h2>
+    <p id="faq1Q" style="margin:0 0 4px; color:var(--text); font-weight:bold;"></p>
+    <p id="faq1A" style="margin:0 0 12px;"></p>
+    <p id="faq2Q" style="margin:0 0 4px; color:var(--text); font-weight:bold;"></p>
+    <p id="faq2A" style="margin:0;"></p>
+  </div>
+
   <p class="footer-links" id="footerLinks"></p>
+  <p style="text-align:center; font-size:11px; color:var(--sub); margin-top:4px;">
+    <a href="https://naginata-work.github.io/" style="color:var(--sub);" id="allToolsLink"></a> ・
+    <a href="https://naginata-work.github.io/privacy.html" style="color:var(--sub);" id="privacyLink"></a>
+  </p>
 </div>
 
 <script>
@@ -89,7 +107,15 @@
       copyBtn: '結果をコピー',
       copied: 'コピーしました!',
       shareText: (notation, total) => `${notation} をロール → 結果: ${total} 🎲`,
-      footerLinks: '他のツールも作っています → <a href="https://naginata-work.github.io/fair-picker/" target="_blank" rel="noopener">公平くじ引き</a> / <a href="https://naginata-work.github.io/team-shuffler/" target="_blank" rel="noopener">チーム分け</a>'
+      footerLinks: '他のツールも作っています → <a href="https://naginata-work.github.io/fair-picker/" target="_blank" rel="noopener">公平くじ引き</a> / <a href="https://naginata-work.github.io/team-shuffler/" target="_blank" rel="noopener">チーム分け</a>',
+      aboutTitle: 'ダイス記法について',
+      aboutBody1: 'TRPG(テーブルトークRPG)やボードゲームでは「2d6+3」のように「面数d個数+修正値」という記法でダイスを表します。実物のサイコロを何個も用意しなくても、オンラインセッションや一人での確認作業ではこうしたツールが重宝します。',
+      aboutBody2: 'd4〜d100までの主要な面数をワンタップで選べ、個数と修正値も自由に指定できます。ロール結果は個々の出目と合計値の両方が表示され、直近10回分の履歴も確認できるので、連続したロールの記録用としても使えます。',
+      faqTitle: 'よくある質問',
+      faq1Q: 'd100(100面ダイス)はどんな時に使うの?',
+      faq1A: 'd100は「パーセンテージダイス」とも呼ばれ、TRPGで成功率(1〜100の範囲)を判定する際によく使われます。d10を2つ組み合わせて100面を再現する伝統的な記法に由来します。',
+      faq2Q: 'このツールの乱数に偏りはない?',
+      faq2A: 'ブラウザ標準の乱数機能を使っており、各出目が等確率で出るように実装しています。特定の目が出やすくなるような細工はありません。',
     },
     en: {
       title: '🎲 Dice Roller',
@@ -101,7 +127,15 @@
       copyBtn: 'Copy result',
       copied: 'Copied!',
       shareText: (notation, total) => `Rolled ${notation} → Result: ${total} 🎲`,
-      footerLinks: 'Also made these → <a href="https://naginata-work.github.io/fair-picker/" target="_blank" rel="noopener">Fair Picker</a> / <a href="https://naginata-work.github.io/team-shuffler/" target="_blank" rel="noopener">Team Shuffler</a>'
+      footerLinks: 'Also made these → <a href="https://naginata-work.github.io/fair-picker/" target="_blank" rel="noopener">Fair Picker</a> / <a href="https://naginata-work.github.io/team-shuffler/" target="_blank" rel="noopener">Team Shuffler</a>',
+      aboutTitle: 'About dice notation',
+      aboutBody1: 'Tabletop RPGs and board games often use shorthand like "2d6+3" — meaning roll two six-sided dice and add 3. Carrying a full set of physical dice isn\'t always practical, especially for online sessions or quick solo checks.',
+      aboutBody2: 'Tap any common die from d4 up to d100, then set the count and an optional modifier. Results show both the individual rolls and the total, and your last 10 rolls stay visible so you can track a sequence of checks.',
+      faqTitle: 'FAQ',
+      faq1Q: 'When would I use a d100?',
+      faq1A: 'A d100 (sometimes called "percentile dice") is commonly used in tabletop RPGs to resolve a success chance out of 100. It traces back to combining two d10s to simulate a 100-sided die.',
+      faq2Q: 'Is the randomness actually fair?',
+      faq2A: "Yes. It uses your browser's standard random number generator, so every face has an equal chance of coming up — there's no weighting toward any particular result.",
     }
   };
 
@@ -178,6 +212,18 @@
     document.getElementById('rollBtn').textContent = t().rollBtn;
     document.getElementById('copyBtn').textContent = t().copyBtn;
     document.getElementById('footerLinks').innerHTML = t().footerLinks;
+    document.getElementById('aboutTitle').textContent = t().aboutTitle;
+    document.getElementById('aboutBody1').textContent = t().aboutBody1;
+    document.getElementById('aboutBody2').textContent = t().aboutBody2;
+    document.getElementById('faqTitle').textContent = t().faqTitle;
+    document.getElementById('faq1Q').textContent = t().faq1Q;
+    document.getElementById('faq1A').textContent = t().faq1A;
+    document.getElementById('faq2Q').textContent = t().faq2Q;
+    document.getElementById('faq2A').textContent = t().faq2A;
+    document.getElementById('allToolsLink').textContent = lang === 'ja' ? '他のツール一覧' : 'All tools';
+    document.getElementById('allToolsLink').href = 'https://naginata-work.github.io/';
+    document.getElementById('privacyLink').textContent = lang === 'ja' ? 'プライバシーポリシー' : 'Privacy policy';
+    document.getElementById('privacyLink').href = 'https://naginata-work.github.io/privacy.html';
     if (lastResult) {
       document.getElementById('breakdown').textContent = '';
     }
